@@ -1,0 +1,105 @@
+
+	
+	
+<!Doctype html>
+<html>
+<head>
+
+<title>Rock Paper Scissors!</title>
+
+<link rel="stylesheet" type="text/css" href="assets/stylesheets/styles.css">
+
+
+</head>
+
+<body>
+
+<div class="choose" align="center">
+<h1 id="question">Rock, Paper, or Scissors? Click an Image. Let's Battle.</h1>
+<h2 id="result"></h2>
+<h2>PLAYER: <span id="playerScore">0</span> - <span id="computerScore">0</span> :COMPUTER</h2>
+<img src="https://images.freeimages.com/images/premium/previews/3566/35669226-geology-hammer-rock-drawing.jpg" id="rock">
+<img src="https://us.123rf.com/450wm/taesmileland/taesmileland1210/taesmileland121000034/15741972-notebook-paper-drawing.jpg?ver=6" id="paper">
+<img src="http://www.merriam-webster.com/assets/ld/images/legacy_print_images/scissors.gif" id="scissors">
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+	<script src="assets/scripts/site.js" type="text/javascript"></script>
+
+<script>
+$(function(){
+
+var computerScore=0,
+  playerScore=0;
+function setText(txt){
+$("#playerScore").text(playerScore);
+$("#computerScore").text(computerScore);
+$("#result").text(txt);
+}
+
+function makeComputerChoice(){
+  var computerChoice = "";
+  var r = Math.random();
+  if (r < .33) {
+    computerChoice = "rock";
+  } else if (r < .66) {
+    computerChoice = "paper";
+  } else {
+    computerChoice = "scissors";   
+  };
+  return computerChoice;
+ }
+
+
+function makeUserChoice(userChoice){
+  
+  var computerChoice = makeComputerChoice();
+  var outcome = "";
+if (userChoice == computerChoice) {
+    outcome="Tie! LAME.";
+} else if (userChoice == "rock") {
+    if (computerChoice == "scissors") {
+        outcome="BATTLE WON!"; playerScore=playerScore+1;
+    } else {
+        outcome="battle lost."; computerScore=computerScore+1;
+    };
+} else if (userChoice == "paper") {
+    if (computerChoice == "rock") {
+        outcome="BATTLE WON!"; playerScore=playerScore+1;
+    } else {
+        outcome="battle lost."; computerScore=computerScore+1;
+    };
+} else if (userChoice == "scissors") {
+    if (computerChoice == "paper") {
+        outcome="BATTLE WON!"; playerScore=playerScore+1;
+    } else {
+        outcome="battle lost."; computerScore=computerScore+1;
+    };
+};
+  setText(userChoice+" vs "+computerChoice+" = "+outcome);
+};
+// if (playerScore==5){
+// 	outcome="YOU WON THE WAR!"
+// } else if (computerScore==5){
+// 	outcome="YOU LOST THE WAR..."
+// } else {
+// 	outcome="YOU LOST THE WAR..."
+// };
+
+ 
+ $('#rock').click(function() {
+        makeUserChoice("rock");
+    });
+    $('#paper').click(function() {
+        makeUserChoice("paper");
+    });
+    $('#scissors').click(function() {
+        makeUserChoice("scissors");
+    });
+});
+</script>
+</body>
+</html>
+ 
+
